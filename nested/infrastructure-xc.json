@@ -280,12 +280,12 @@
             "ServiceObjectiveLevel": "S0"
           },
           "xcShard0SqlDatabase": {
-            "Edition": "Premium",
+            "Edition": "Standard",
             "MaxSize": "268435456000",
             "ServiceObjectiveLevel": "S2"
           },
           "xcShard1SqlDatabase": {
-            "Edition": "Premium",
+            "Edition": "Standard",
             "MaxSize": "268435456000",
             "ServiceObjectiveLevel": "S2"
           },
