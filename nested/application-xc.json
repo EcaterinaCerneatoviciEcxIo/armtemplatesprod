@@ -518,6 +518,10 @@
             "value": "[parameters('applicationInsightsName')]"
           },
 
+		  "xcSearchWebAppName": {
+            "value": "[parameters('xcSearchWebAppName')]"
+          },
+		  
           "xcSearchMsDeployPackageUrl": {
             "value": "[parameters('xcSearchMsDeployPackageUrl')]"
           },
