@@ -35,23 +35,7 @@
     "redisCacheNameTidy": "[toLower(trim(parameters('redisCacheName')))]",
     "appInsightsNameTidy": "[toLower(trim(parameters('applicationInsightsName')))]",
     "appInsightsPricePlanTidy": "[toLower(trim(parameters('applicationInsightsPricePlan')))]",
-    "authCertificateNameTidy": "[toLower(trim(parameters('authCertificateName')))]",
-
-    "sitecoreTags": {
-      "provider": "b51535c2-ab3e-4a68-95f8-e2e3c9a19299",
-      "cm": "cm",
-      "cd": "cd",
-      "rep": "rep",
-      "prc": "prc",
-      "core": "core",
-      "master": "master",
-      "web": "web",
-      "reporting": "reporting",
-      "pools": "prc-pools",
-      "tasks": "prc-tasks",
-      "forms": "forms",
-      "exmmaster" : "exmmaster"
-    }
+    "authCertificateNameTidy": "[toLower(trim(parameters('authCertificateName')))]"    
   },
   "parameters": {
     "deploymentId": {
@@ -627,11 +611,7 @@
       "properties": {
         "name": "[variables('cmHostingPlanNameTidy')]"
       },
-      "location": "[parameters('location')]",
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').cm]"
-      }
+      "location": "[parameters('location')]"      
     },
     {
       "type": "Microsoft.Web/serverfarms",
@@ -644,11 +624,7 @@
       "properties": {
         "name": "[variables('cdHostingPlanNameTidy')]"
       },
-      "location": "[parameters('location')]",
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').cd]"
-      }
+      "location": "[parameters('location')]"
     },
     {
       "type": "Microsoft.Web/serverfarms",
@@ -661,11 +637,7 @@
       "properties": {
         "name": "[variables('prcHostingPlanNameTidy')]"
       },
-      "location": "[parameters('location')]",
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').prc]"
-      }
+      "location": "[parameters('location')]"
     },
     {
       "type": "Microsoft.Web/serverfarms",
@@ -678,11 +650,7 @@
       "properties": {
         "name": "[variables('repHostingPlanNameTidy')]"
       },
-      "location": "[parameters('location')]",
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').rep]"
-      }
+      "location": "[parameters('location')]"
     },
     {
       "type": "Microsoft.Web/sites",
@@ -702,11 +670,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('cmHostingPlanNameTidy'))]"
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').cm]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Web/sites",
@@ -726,11 +690,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('cdHostingPlanNameTidy'))]"
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').cd]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Web/sites",
@@ -750,11 +710,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('prcHostingPlanNameTidy'))]"
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').prc]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Web/sites",
@@ -774,11 +730,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('repHostingPlanNameTidy'))]"
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').rep]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Sql/servers",
@@ -789,10 +741,7 @@
         "version": "[parameters('sqlServerVersion')]"
       },
       "name": "[variables('sqlServerNameTidy')]",
-      "location": "[parameters('location')]",
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]"
-      },
+      "location": "[parameters('location')]",      
       "resources": [
         {
           "type": "firewallrules",
@@ -828,11 +777,7 @@
           ],
           "name": "[variables('coreSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],
-          "tags": {
-            "provider": "[variables('sitecoreTags').provider]",
-            "logicalName": "[variables('sitecoreTags').core]"
-          }
+          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
         },
         {
           "type": "databases",
@@ -858,11 +803,7 @@
           ],
           "name": "[variables('masterSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],
-          "tags": {
-            "provider": "[variables('sitecoreTags').provider]",
-            "logicalName": "[variables('sitecoreTags').master]"
-          }
+          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
         },
 		    {
           "type": "databases",
@@ -888,11 +829,7 @@
           ],
           "name": "[variables('webSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],
-          "tags": {
-            "provider": "[variables('sitecoreTags').provider]",
-            "logicalName": "[variables('sitecoreTags').web]"
-          }
+          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
         },
         {
           "type": "databases",
@@ -918,11 +855,7 @@
           ],
           "name": "[variables('reportingSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],
-          "tags": {
-            "provider": "[variables('sitecoreTags').provider]",
-            "logicalName": "[variables('sitecoreTags').reporting]"
-          }
+          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
         },
         {
           "type": "databases",
@@ -948,11 +881,7 @@
           ],
           "name": "[variables('poolsSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],
-          "tags": {
-            "provider": "[variables('sitecoreTags').provider]",
-            "logicalName": "[variables('sitecoreTags').pools]"
-          }
+          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
         },
         {
           "type": "databases",
@@ -978,11 +907,7 @@
           ],
           "name": "[variables('tasksSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],
-          "tags": {
-            "provider": "[variables('sitecoreTags').provider]",
-            "logicalName": "[variables('sitecoreTags').tasks]"
-          }
+          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
         },
         {
           "type": "databases",
@@ -1008,11 +933,7 @@
           ],
           "name": "[variables('formsSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],
-          "tags": {
-            "provider": "[variables('sitecoreTags').provider]",
-            "logicalName": "[variables('sitecoreTags').forms]"
-          }
+          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
         },
         {
           "type": "databases",
@@ -1038,11 +959,7 @@
           ],
           "name": "[variables('exmMasterSqlDatabaseNameTidy')]",
           "location": "[parameters('location')]",
-          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ],
-          "tags": {
-            "provider": "[variables('sitecoreTags').provider]",
-            "logicalName": "[variables('sitecoreTags').exmmaster]"
-          }
+          "dependsOn": [ "[resourceId('Microsoft.Sql/servers', variables('sqlServerNameTidy'))]" ]
         }
       ]
     },
@@ -1058,9 +975,6 @@
       "properties": {
         "replicaCount": "[parameters('resourceSizes').searchService.Replicas]",
         "partitionCount": "[parameters('resourceSizes').searchService.Partitions]"
-      },
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]"
       }
     },
     {
@@ -1075,9 +989,6 @@
           "capacity": "[parameters('resourceSizes').redisCache.SkuCapacity]"
         },
         "enableNonSslPort": false
-      },
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]"
       }
     },
     {
@@ -1088,9 +999,6 @@
       "properties": {
         "ApplicationId": "[variables('appInsightsNameTidy')]",
         "Application_Type": "web"
-      },
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]"
       }
     },
     {
@@ -1106,10 +1014,7 @@
       },
       "dependsOn": [
         "[resourceId('Microsoft.Insights/Components', variables('appInsightsNameTidy'))]"
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Web/certificates",
@@ -1125,9 +1030,6 @@
       "properties": {
         "password": "[parameters('authCertificatePassword')]",
         "pfxBlob": "[parameters('authCertificateBlob')]"
-      },
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]"
       }
     }
   ],

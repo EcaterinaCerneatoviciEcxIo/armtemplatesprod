@@ -6,12 +6,8 @@
     "serverFarmApiVersion": "2016-09-01",
 
     "exmDdsHostingPlanNameTidy": "[toLower(trim(parameters('exmDdsHostingPlanName')))]",
-    "exmDdsWebAppNameTidy": "[toLower(trim(parameters('exmDdsWebAppName')))]",
-
-    "sitecoreTags": {
-      "provider": "b51535c2-ab3e-4a68-95f8-e2e3c9a19299",
-      "dds": "dds"
-    }
+    "exmDdsWebAppNameTidy": "[toLower(trim(parameters('exmDdsWebAppName')))]"
+    
   },
   "parameters": {
     "deploymentId": {
@@ -90,11 +86,7 @@
       "properties": {
         "name": "[variables('exmDdsHostingPlanNameTidy')]"
       },
-      "location": "[parameters('location')]",
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').dds]"
-      }
+      "location": "[parameters('location')]"
     },
     {
       "type": "Microsoft.Web/sites",
@@ -114,11 +106,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('exmDdsHostingPlanNameTidy'))]"
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').dds]"
-      }
+      ]
     }
   ]
 }

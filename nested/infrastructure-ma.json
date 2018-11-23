@@ -12,14 +12,7 @@
     "xcBasicHostingPlanNameTidy": "[toLower(trim(parameters('xcBasicHostingPlanName')))]",
 
     "maOpsWebAppNameTidy": "[toLower(trim(parameters('maOpsWebAppName')))]",
-    "maRepWebAppNameTidy": "[toLower(trim(parameters('maRepWebAppName')))]",
-
-    "sitecoreTags": {
-      "provider": "b51535c2-ab3e-4a68-95f8-e2e3c9a19299",
-      "maOps": "ma-ops",
-      "maRep": "ma-rep",
-      "ma": "ma"
-    }
+    "maRepWebAppNameTidy": "[toLower(trim(parameters('maRepWebAppName')))]"
   },
   "parameters": {
     "deploymentId": {
@@ -144,11 +137,7 @@
             "status": "Enabled"
           }
         }
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').ma]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Web/sites",
@@ -166,10 +155,6 @@
             "index.html"
           ]
         }
-      },
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').maRep]"
       }
     },
     {
@@ -188,11 +173,7 @@
           ]
         }
       },
-      "location": "[parameters('location')]",
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').maOps]"
-      }
+      "location": "[parameters('location')]"
     }
   ]
 }

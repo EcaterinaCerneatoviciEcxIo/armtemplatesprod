@@ -19,19 +19,7 @@
 
     "xcRefDataWebAppNameTidy": "[toLower(trim(parameters('xcRefDataWebAppName')))]",
     "xcCollectWebAppNameTidy": "[toLower(trim(parameters('xcCollectWebAppName')))]",
-    "xcSearchWebAppNameTidy": "[toLower(trim(parameters('xcSearchWebAppName')))]",
-
-    "sitecoreTags": {
-      "provider": "b51535c2-ab3e-4a68-95f8-e2e3c9a19299",
-      "xc": "xc",
-      "xcSearch": "xc-search",
-      "xcCollect": "xc-collect",
-      "xcRefData": "xc-refdata",
-      "xcShard0": "xc-shard-0",
-      "xcShard1": "xc-shard-1",
-      "xcShardMapManager": "xc-smm",
-      "messaging": "messaging"
-    }
+    "xcSearchWebAppNameTidy": "[toLower(trim(parameters('xcSearchWebAppName')))]"
   },
   "parameters": {
     "deploymentId": {
@@ -314,11 +302,7 @@
       "properties": {
         "name": "[variables('xcBasicHostingPlanNameTidy')]"
       },
-      "location": "[parameters('location')]",
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').xc]"
-      }
+      "location": "[parameters('location')]"
     },
     {
       "type": "Microsoft.Web/serverfarms",
@@ -331,11 +315,7 @@
       "properties": {
         "name": "[variables('xcResourceIntensiveHostingPlanNameTidy')]"
       },
-      "location": "[parameters('location')]",
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').xc]"
-      }
+      "location": "[parameters('location')]"
     },
     {
       "type": "Microsoft.Web/sites",
@@ -356,11 +336,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('xcResourceIntensiveHostingPlanNameTidy'))]"
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').xcRefData]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Sql/servers/databases",
@@ -385,11 +361,7 @@
             "status": "Enabled"
           }
         }
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').xcRefData]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Web/sites",
@@ -410,11 +382,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('xcResourceIntensiveHostingPlanNameTidy'))]"
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').xcCollect]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Sql/servers/databases",
@@ -439,11 +407,7 @@
             "status": "Enabled"
           }
         }
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').xcShardMapManager]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Sql/servers/databases",
@@ -468,11 +432,7 @@
             "status": "Enabled"
           }
         }
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').xcShard0]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Sql/servers/databases",
@@ -497,11 +457,7 @@
             "status": "Enabled"
           }
         }
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').xcShard1]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Sql/servers/databases",
@@ -526,11 +482,7 @@
             "status": "Enabled"
           }
         }
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').messaging]"
-      }
+      ]
     },
     {
       "type": "Microsoft.Web/sites",
@@ -551,11 +503,7 @@
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Web/serverfarms', variables('xcBasicHostingPlanNameTidy'))]"
-      ],
-      "tags": {
-        "provider": "[variables('sitecoreTags').provider]",
-        "logicalName": "[variables('sitecoreTags').xcSearch]"
-      }
+      ]
     }
   ]
 }
